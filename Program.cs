@@ -12,19 +12,19 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.InlineQueryResults;
 using Telegram.Bot.Types.ReplyMarkups;
+using TelegramDriverBot.Entities;
+using TelegramDriverBot.system;
 
 namespace TelegramDriverBot
 {
     class Program
     {
         private static readonly TelegramBotClient Bot = Utils.getBotInstance();
+   
         public static void Main(string[] args)
         {
-            //Utils.reflectAdditionalButtons(new string[] {
-            //      "/main","/start","/test"
-            //  });
-            //Console.ReadLine();
-            //return;
+           // Task.Run(()=>(new DatabaseSeeder()).execute());  
+
             var me = Bot.GetMeAsync().Result;
             
             Console.Title = me.Username;
@@ -75,36 +75,9 @@ namespace TelegramDriverBot
         {
             Console.WriteLine($"Received inline query from: {inlineQueryEventArgs.InlineQuery.From.Id}");
 
-            InlineQueryResultBase[] results = {
-                new InlineQueryResultLocation(
-                    id: "1",
-                    latitude: 40.7058316f,
-                    longitude: -74.2581888f,
-                    title: "New York")   // displayed result
-                    {
-                        InputMessageContent = new InputLocationMessageContent(
-                            latitude: 40.7058316f,
-                            longitude: -74.2581888f)    // message if result is selected
-                    },
+            Console.WriteLine($"Received inline query from: {inlineQueryEventArgs.InlineQuery.Query}");
 
-                new InlineQueryResultLocation(
-                    id: "2",
-                    latitude: 13.1449577f,
-                    longitude: 52.507629f,
-                    title: "Berlin") // displayed result
-                    {
-
-                        InputMessageContent = new InputLocationMessageContent(
-                            latitude: 13.1449577f,
-                            longitude: 52.507629f)   // message if result is selected
-                    }
-            };
-
-            await Bot.AnswerInlineQueryAsync(
-                inlineQueryEventArgs.InlineQuery.Id,
-                results,
-                isPersonal: true,
-                cacheTime: 0);
+            Utils.reflectInlineCommands(inlineQueryEventArgs.InlineQuery);
         }
 
         private static void BotOnChosenInlineResultReceived(object sender, ChosenInlineResultEventArgs chosenInlineResultEventArgs)

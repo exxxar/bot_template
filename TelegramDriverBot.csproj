@@ -37,6 +37,10 @@
       <HintPath>..\packages\Antlr3.Runtime.3.5.1\lib\net40-client\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Faker.NET45, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Faker.Net.1.1.1\lib\net452\Faker.NET45.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FluentNHibernate, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentNHibernate.2.1.2\lib\net461\FluentNHibernate.dll</HintPath>
       <Private>True</Private>
@@ -148,17 +152,45 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdditionalButton.cs" />
-    <Compile Include="CarsController.cs" />
-    <Compile Include="CommandAttribute.cs" />
-    <Compile Include="CommandController.cs" />
-    <Compile Include="CommandException.cs" />
-    <Compile Include="ControllerAttribute.cs" />
-    <Compile Include="MenuAttribute.cs" />
-    <Compile Include="MainMenuController.cs" />
+    <Compile Include="Controllers\BasketController.cs" />
+    <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\OrdersContoller.cs" />
+    <Compile Include="Controllers\PartsController.cs" />
+    <Compile Include="system\AdditionalButtonsGroup.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="system\AdditionalButton.cs" />
+    <Compile Include="Controllers\CarsController.cs" />
+    <Compile Include="system\attribute\CommandAttribute.cs" />
+    <Compile Include="Controllers\CommandController.cs" />
+    <Compile Include="system\CommandException.cs" />
+    <Compile Include="system\attribute\ControllerAttribute.cs" />
+    <Compile Include="Controllers\StartMenuController.cs" />
+    <Compile Include="system\DatabaseSeeder.cs" />
+    <Compile Include="system\DB.cs" />
+    <Compile Include="Entities\Cars.cs" />
+    <Compile Include="Entities\Clients.cs" />
+    <Compile Include="Entities\Employees.cs" />
+    <Compile Include="Entities\Orders.cs" />
+    <Compile Include="Entities\Parts.cs" />
+    <Compile Include="Entities\Parts_stock.cs" />
+    <Compile Include="Entities\Parts_type.cs" />
+    <Compile Include="Entities\Shippers.cs" />
+    <Compile Include="Mappings\CarsMap.cs" />
+    <Compile Include="Mappings\ClientsMap.cs" />
+    <Compile Include="Mappings\EmployeesMap.cs" />
+    <Compile Include="system\attribute\InlineCommandAttribute.cs" />
+    <Compile Include="Mappings\OrdersMap.cs" />
+    <Compile Include="Mappings\PartsMap.cs" />
+    <Compile Include="Mappings\Parts_stockMap.cs" />
+    <Compile Include="Mappings\Parts_typeMap.cs" />
+    <Compile Include="Mappings\ShippersMap.cs" />
+    <Compile Include="system\attribute\MenuAttribute.cs" />
+    <Compile Include="Controllers\MainMenuController.cs" />
+    <Compile Include="MySQLSessionFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils.cs" />
+    <Compile Include="system\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -167,10 +199,7 @@
   <ItemGroup>
     <Analyzer Include="..\packages\Telegram.Bot.Analyzers.1.2.0\analyzers\dotnet\cs\Telegram.Bot.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Mappings\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
